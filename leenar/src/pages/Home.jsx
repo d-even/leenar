@@ -1,19 +1,20 @@
-import PagePlaceholder from '../components/PagePlaceholder'
-import Button from '../components/ui/Button'
+import Hero from '../components/home/Hero'
+import TrustStrip from '../components/home/TrustStrip'
+import Bestsellers from '../components/home/Bestsellers'
+import Reviews from '../components/home/Reviews'
 
-/** Home page (/). Built in Phase 4; for now it previews the button styles. */
+/**
+ * Home page (/).
+ * Navbar and footer come from the shared Layout; the hero sits under the
+ * transparent navbar (see TRANSPARENT_NAV_ROUTES).
+ */
 export default function Home() {
   return (
-    <PagePlaceholder title="Crafted by Hand. Carried for Life." subtitle="Home">
-      <div className="flex flex-wrap items-center justify-center gap-4">
-        <Button to="/shop">Shop Now</Button>
-        <Button to="/about" variant="outline">
-          Our Story
-        </Button>
-        <Button to="/collection" variant="ghost">
-          View Collections
-        </Button>
-      </div>
-    </PagePlaceholder>
+    <>
+      <Hero />
+      <TrustStrip />
+      <Bestsellers />
+      <Reviews />
+    </>
   )
 }

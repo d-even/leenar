@@ -67,6 +67,14 @@
   }
 }
 
+/* Hide the scrollbar on swipeable rows (still scrollable by touch, wheel and keyboard) */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* Respect users who prefer less motion */
 @media (prefers-reduced-motion: reduce) {
   *,

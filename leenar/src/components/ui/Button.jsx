@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom'
  * Renders a router <Link> when `to` is given, an <a> when `href` is given,
  * otherwise a native <button>.
  *
- * @param {'primary'|'outline'|'ghost'|'light'} variant
+ * @param {'primary'|'outline'|'ghost'|'light'|'outlineLight'} variant
  *   primary: solid Espresso, Ember on hover
  *   outline: Espresso border, fills on hover
  *   ghost:   text only with an underline accent
  *   light:   Malibu fill, for use on dark (Espresso / photo) backgrounds
+ *   outlineLight: light border, for use on dark backgrounds
  * @param {'sm'|'md'|'lg'} size
  * @param {boolean} fullWidth
  */
@@ -25,6 +26,7 @@ const VARIANTS = {
   ghost:
     'rounded-none px-0! text-espresso underline decoration-gold decoration-1 underline-offset-8 hover:text-ember hover:decoration-2',
   light: 'bg-malibu text-espresso shadow-soft hover:bg-malibu-light hover:shadow-lift',
+  outlineLight: 'border border-malibu/70 text-malibu-light hover:border-malibu hover:bg-malibu hover:text-espresso',
 }
 
 const SIZES = {
