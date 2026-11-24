@@ -4,13 +4,19 @@ import { BrowserRouter } from 'react-router-dom'
 import { MotionConfig } from 'framer-motion'
 import './index.css'
 import App from './App.jsx'
+import { CartProvider } from './context/CartContext'
+import { ToastProvider } from './context/ToastContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       {/* Animations are skipped for users who prefer reduced motion */}
       <MotionConfig reducedMotion="user">
-        <App />
+        <ToastProvider>
+          <CartProvider>
+            <App />
+          </CartProvider>
+        </ToastProvider>
       </MotionConfig>
     </BrowserRouter>
   </StrictMode>,

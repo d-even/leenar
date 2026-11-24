@@ -1,0 +1,10 @@
+/** Shared formatting helpers. */
+
+const inr = new Intl.NumberFormat('en-IN', {
+  style: 'currency',
+  currency: 'INR',
+  maximumFractionDigits: 0,
+})
+
+/** 12499 -> "₹12,499" */
+export const formatPrice = (amount) => inr.format(amount)

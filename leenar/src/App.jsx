@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import ScrollToTop from './components/ScrollToTop'
+import Layout from './components/layout/Layout'
 import Home from './pages/Home'
 import About from './pages/About'
 import Shop from './pages/Shop'
@@ -11,26 +11,23 @@ import Profile from './pages/Profile'
 import NotFound from './pages/NotFound'
 
 /**
- * App routes. A shared Layout (navbar, cart drawer, footer) wraps
- * these in Phase 2.
+ * App routes. Every page renders inside the shared Layout
+ * (navbar, cart drawer, footer).
  */
 export default function App() {
   return (
-    <>
-      <ScrollToTop />
-      <main id="main">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/collection" element={<Collections />} />
-          <Route path="/collection/:slug" element={<CollectionDetail />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-    </>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/collection" element={<Collections />} />
+        <Route path="/collection/:slug" element={<CollectionDetail />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   )
 }
