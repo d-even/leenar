@@ -1,39 +1,27 @@
-import PagePlaceholder from '../components/PagePlaceholder'
-import Button from '../components/ui/Button'
-import useCart from '../hooks/useCart'
-import useToast from '../hooks/useToast'
-import aureaImage from '../assets/bag2.avif'
-import veronaImage from '../assets/bag17.avif'
+import Container from '../components/ui/Container'
+import SectionTitle from '../components/ui/SectionTitle'
+import ProductCard from '../components/ProductCard'
+import { products } from '../data/products'
 
-/*
- * TEMPORARY (Phase 2): sample items to test the cart drawer before
- * real product data exists. Replaced by the product grid in Phase 3/6.
+/**
+ * Shop page (/shop).
+ * TEMPORARY (Phase 3): a plain grid of every product to test ProductCard.
+ * Filters, sorting and the full layout arrive in Phase 6.
  */
-const SAMPLE_ITEMS = [
-  { id: 'aurea', name: 'Aurea', image: aureaImage, colour: 'Whisky', size: 'One size', price: 4890 },
-  { id: 'verona', name: 'Verona', image: veronaImage, colour: 'Tan', size: 'Medium', price: 9490 },
-]
-
-/** Shop page (/shop). Built in Phase 6. */
 export default function Shop() {
-  const { addItem, openCart } = useCart()
-  const { showToast } = useToast()
-
-  const addSample = (item) => {
-    addItem(item)
-    showToast(`${item.name} added to your bag`)
-    openCart()
-  }
-
   return (
-    <PagePlaceholder title="Shop All Bags" subtitle="Every Leenar piece, handcrafted in 100% real leather.">
-      <div className="flex flex-wrap justify-center gap-4">
-        {SAMPLE_ITEMS.map((item) => (
-          <Button key={item.id} variant="outline" onClick={() => addSample(item)}>
-            Add sample: {item.name}
-          </Button>
+    <Container as="section" size="wide" className="py-16 lg:py-24">
+      <SectionTitle
+        as="h1"
+        eyebrow="Leenar"
+        title="Shop All Bags"
+        subtitle="Every Leenar piece, handcrafted in 100% real leather."
+      />
+      <div className="grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {products.map((product, index) => (
+          <ProductCard key={product.id} product={product} index={index} />
         ))}
       </div>
-    </PagePlaceholder>
+    </Container>
   )
 }
