@@ -27,3 +27,13 @@ export const NAV_LINKS = [
   { label: 'Collection', to: '/collection' },
   { label: 'Contact', to: '/contact' },
 ]
+
+/**
+ * Shipping & returns copy shown on every product page.
+ * Placeholder policy: confirm the real terms before launch.
+ */
+export const SHIPPING_RETURNS = [
+  'Free shipping across India on every order. Dispatched within 2–3 working days; delivery usually takes 4–7 working days.',
+  'Easy 7-day returns on unused bags in their original packaging. Personalised and custom orders cannot be returned.',
+  'Every bag arrives in a Leenar dust bag and gift-ready box.',
+]

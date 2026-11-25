@@ -1,9 +1,20 @@
+import { Suspense } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from './Navbar'
 import { TRANSPARENT_NAV_ROUTES } from './navConfig'
 import CartDrawer from './CartDrawer'
 import Footer from './Footer'
 import ScrollToTop from '../ScrollToTop'
+
+/** Shown briefly while a page's code downloads. */
+function PageLoader() {
+  return (
+    <div className="flex min-h-[70vh] items-center justify-center" role="status">
+      <span className="size-8 animate-spin rounded-full border-2 border-gold/30 border-t-ember" aria-hidden="true" />
+      <span className="sr-only">Loading</span>
+    </div>
+  )
+}
 
 /**
  * Shared page shell: navbar, cart drawer, the current page, footer.
@@ -30,7 +41,9 @@ export default function Layout() {
       <CartDrawer />
 
       <main id="main" tabIndex={-1} className={`flex-1 focus:outline-none ${underNav ? '' : 'pt-16 lg:pt-20'}`}>
-        <Outlet />
+        <Suspense fallback={<PageLoader />}>
+          <Outlet />
+        </Suspense>
       </main>
 
       <Footer />

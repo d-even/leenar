@@ -1,15 +1,19 @@
+import { lazy } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import Home from './pages/Home'
-import About from './pages/About'
-import Shop from './pages/Shop'
-import ProductDetail from './pages/ProductDetail'
-import Collections from './pages/Collections'
-import CollectionDetail from './pages/CollectionDetail'
-import Contact from './pages/Contact'
-import Profile from './pages/Profile'
-import Wishlist from './pages/Wishlist'
-import NotFound from './pages/NotFound'
+
+// Home loads with the app; every other page is fetched on first visit (smaller first download).
+// The loading state is the <Suspense> fallback in Layout.
+const About = lazy(() => import('./pages/About'))
+const Shop = lazy(() => import('./pages/Shop'))
+const ProductDetail = lazy(() => import('./pages/ProductDetail'))
+const Collections = lazy(() => import('./pages/Collections'))
+const CollectionDetail = lazy(() => import('./pages/CollectionDetail'))
+const Contact = lazy(() => import('./pages/Contact'))
+const Profile = lazy(() => import('./pages/Profile'))
+const Wishlist = lazy(() => import('./pages/Wishlist'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 
 /**
  * App routes. Every page renders inside the shared Layout
