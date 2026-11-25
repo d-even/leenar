@@ -8,6 +8,7 @@ import Collections from './pages/Collections'
 import CollectionDetail from './pages/CollectionDetail'
 import Contact from './pages/Contact'
 import Profile from './pages/Profile'
+import Wishlist from './pages/Wishlist'
 import NotFound from './pages/NotFound'
 
 /**
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="/collection/:slug" element={<CollectionDetail />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/wishlist" element={<Wishlist />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

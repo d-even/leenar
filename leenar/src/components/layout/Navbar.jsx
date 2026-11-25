@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Menu, ShoppingBag, User, X } from 'lucide-react'
+import { Heart, Menu, ShoppingBag, User, X } from 'lucide-react'
 import Container from '../ui/Container'
 import useCart from '../../hooks/useCart'
+import useWishlist from '../../hooks/useWishlist'
 import { NAV_LINKS, SITE, SOCIAL_LINKS } from '../../data/site'
 import { SOCIAL_ICONS } from '../icons/socialIconMap'
 import useLockBodyScroll from '../../hooks/useLockBodyScroll'
@@ -19,43 +20,67 @@ function Logo({ className = '' }) {
   )
 }
 
+/** Shared style for the round icon buttons on the right of the navbar. */
+const ICON_BUTTON = 'relative rounded-full p-1.5 transition-colors hover:text-gold sm:p-2'
+
+/** Small Gold count bubble on an icon (hidden at zero). */
+function CountBadge({ count }) {
+  return (
+    <AnimatePresence>
+      {count > 0 && (
+        <motion.span
+          key={count}
+          initial={{ scale: 0.4, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.4, opacity: 0 }}
+          className="absolute -top-0.5 -right-0.5 flex min-w-5 items-center justify-center rounded-full bg-gold px-1 text-[0.65rem] leading-5 font-semibold text-espresso"
+          aria-hidden="true"
+        >
+          {count > 99 ? '99+' : count}
+        </motion.span>
+      )}
+    </AnimatePresence>
+  )
+}
+
+function ProfileLink() {
+  return (
+    <NavLink
+      to="/profile"
+      className={({ isActive }) => `${ICON_BUTTON} ${isActive ? 'text-gold' : 'text-malibu-light'}`}
+      aria-label="My account"
+    >
+      <User size={22} strokeWidth={1.5} />
+    </NavLink>
+  )
+}
+
+function WishlistLink() {
+  const { count } = useWishlist()
+  return (
+    <NavLink
+      to="/wishlist"
+      className={({ isActive }) => `${ICON_BUTTON} ${isActive ? 'text-gold' : 'text-malibu-light'}`}
+      aria-label={`Wishlist, ${count} ${count === 1 ? 'item' : 'items'}`}
+    >
+      <Heart size={22} strokeWidth={1.5} />
+      <CountBadge count={count} />
+    </NavLink>
+  )
+}
+
 function CartButton() {
   const { itemCount, openCart } = useCart()
   return (
     <button
       type="button"
       onClick={openCart}
-      className="relative rounded-full p-2 text-malibu-light transition-colors hover:text-gold"
+      className={`${ICON_BUTTON} text-malibu-light`}
       aria-label={`Open shopping bag, ${itemCount} ${itemCount === 1 ? 'item' : 'items'}`}
     >
       <ShoppingBag size={22} strokeWidth={1.5} />
-      <AnimatePresence>
-        {itemCount > 0 && (
-          <motion.span
-            key={itemCount}
-            initial={{ scale: 0.4, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.4, opacity: 0 }}
-            className="absolute -top-0.5 -right-0.5 flex min-w-5 items-center justify-center rounded-full bg-gold px-1 text-[0.65rem] leading-5 font-semibold text-espresso"
-            aria-hidden="true"
-          >
-            {itemCount > 99 ? '99+' : itemCount}
-          </motion.span>
-        )}
-      </AnimatePresence>
+      <CountBadge count={itemCount} />
     </button>
-  )
-}
-
-function ProfileLink() {
-  return (
-    <Link
-      to="/profile"
-      className="rounded-full p-2 text-malibu-light transition-colors hover:text-gold"
-      aria-label="My account"
-    >
-      <User size={22} strokeWidth={1.5} />
-    </Link>
   )
 }
 
@@ -128,9 +153,14 @@ function MobileMenu({ open, onClose }) {
               transition={{ delay: 0.45 }}
               className="mt-8 space-y-6 text-sm"
             >
-              <Link to="/profile" onClick={onClose} className="inline-flex items-center gap-2 hover:text-gold">
-                <User size={18} strokeWidth={1.5} /> My Account
-              </Link>
+              <div className="flex flex-wrap gap-x-8 gap-y-4">
+                <Link to="/profile" onClick={onClose} className="inline-flex items-center gap-2 hover:text-gold">
+                  <User size={18} strokeWidth={1.5} /> My Account
+                </Link>
+                <Link to="/wishlist" onClick={onClose} className="inline-flex items-center gap-2 hover:text-gold">
+                  <Heart size={18} strokeWidth={1.5} /> Wishlist
+                </Link>
+              </div>
               <p className="text-malibu/70">
                 <a href={`mailto:${SITE.email}`} className="hover:text-gold">
                   {SITE.email}
@@ -228,9 +258,10 @@ export default function Navbar() {
             </ul>
           </nav>
 
-          {/* Right: account, cart, then the logo in the far right corner */}
-          <div className="flex items-center gap-1 sm:gap-2">
+          {/* Right: account, wishlist, bag, then the logo in the far right corner */}
+          <div className="flex items-center gap-0.5 sm:gap-2">
             <ProfileLink />
+            <WishlistLink />
             <CartButton />
             <span className="mx-2 hidden h-6 w-px bg-malibu/25 sm:block lg:mx-4" aria-hidden="true" />
             <Logo className="ml-2 sm:ml-0" />
