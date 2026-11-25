@@ -7,6 +7,7 @@ import App from './App.jsx'
 import { CartProvider } from './context/CartContext'
 import { ToastProvider } from './context/ToastContext'
 import { WishlistProvider } from './context/WishlistContext'
+import { ProfileProvider } from './context/ProfileContext'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -16,7 +17,9 @@ createRoot(document.getElementById('root')).render(
         <ToastProvider>
           <CartProvider>
             <WishlistProvider>
-              <App />
+              <ProfileProvider>
+                <App />
+              </ProfileProvider>
             </WishlistProvider>
           </CartProvider>
         </ToastProvider>

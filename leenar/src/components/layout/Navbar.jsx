@@ -5,6 +5,7 @@ import { Heart, Menu, ShoppingBag, User, X } from 'lucide-react'
 import Container from '../ui/Container'
 import useCart from '../../hooks/useCart'
 import useWishlist from '../../hooks/useWishlist'
+import useProfile from '../../hooks/useProfile'
 import { NAV_LINKS, SITE, SOCIAL_LINKS } from '../../data/site'
 import { SOCIAL_ICONS } from '../icons/socialIconMap'
 import useLockBodyScroll from '../../hooks/useLockBodyScroll'
@@ -21,7 +22,7 @@ function Logo({ className = '' }) {
 }
 
 /** Shared style for the round icon buttons on the right of the navbar. */
-const ICON_BUTTON = 'relative rounded-full p-1.5 transition-colors hover:text-gold sm:p-2'
+const ICON_BUTTON = 'group relative rounded-full p-1.5 transition-colors hover:text-gold sm:p-2'
 
 /** Small Gold count bubble on an icon (hidden at zero). */
 function CountBadge({ count }) {
@@ -43,14 +44,28 @@ function CountBadge({ count }) {
   )
 }
 
+/** Account icon; shows the saved name's initial once the profile has a name. */
 function ProfileLink() {
+  const { profile, initial } = useProfile()
   return (
     <NavLink
       to="/profile"
       className={({ isActive }) => `${ICON_BUTTON} ${isActive ? 'text-gold' : 'text-malibu-light'}`}
-      aria-label="My account"
+      aria-label={initial ? `My account, ${profile.name}` : 'My account'}
     >
-      <User size={22} strokeWidth={1.5} />
+      {({ isActive }) =>
+        initial ? (
+          <span
+            className={`flex size-[26px] items-center justify-center rounded-full font-serif text-sm italic transition-colors ${
+              isActive ? 'bg-gold text-espresso' : 'bg-malibu text-espresso group-hover:bg-gold'
+            }`}
+          >
+            {initial}
+          </span>
+        ) : (
+          <User size={22} strokeWidth={1.5} />
+        )
+      }
     </NavLink>
   )
 }
