@@ -33,7 +33,7 @@ export default function AddressesTab() {
           <h2 className="font-serif text-3xl">
             Saved <em className="text-ember">Addresses</em>
           </h2>
-          <p className="mt-1 text-sm text-espresso/65">Free shipping to every address in India.</p>
+          <p className="mt-1 text-sm text-espresso/70">Free shipping to every address in India.</p>
         </div>
       </div>
 
@@ -63,7 +63,7 @@ export default function AddressesTab() {
                       {address.label}
                     </span>
                     {address.isDefault && (
-                      <span className="text-[0.65rem] font-semibold tracking-[0.15em] text-gold uppercase">Default</span>
+                      <span className="text-[0.65rem] font-semibold tracking-[0.15em] text-ember uppercase">Default</span>
                     )}
                   </div>
                   <address className="mt-4 flex-1 text-sm leading-relaxed not-italic">
@@ -79,7 +79,7 @@ export default function AddressesTab() {
                     <br />
                     {address.city}, {address.state} {address.pincode}
                     <br />
-                    <span className="text-espresso/60">Phone: {address.phone}</span>
+                    <span className="text-espresso/70">Phone: {address.phone}</span>
                   </address>
 
                   {confirmingDelete === address.id ? (

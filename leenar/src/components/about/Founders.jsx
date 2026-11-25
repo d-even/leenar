@@ -86,7 +86,7 @@ export default function Founders() {
             ))}
             <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2" aria-label="Houses our founders have created for">
               {HOUSES.map((house) => (
-                <li key={house} className="text-[0.7rem] font-medium tracking-[0.2em] text-espresso/60 uppercase">
+                <li key={house} className="text-[0.7rem] font-medium tracking-[0.2em] text-espresso/70 uppercase">
                   {house}
                 </li>
               ))}
@@ -95,7 +95,7 @@ export default function Founders() {
               {FOUNDERS.map((founder, index) => (
                 <p key={index}>
                   <span className="block font-serif text-lg italic">{founder.name}</span>
-                  <span className="text-xs text-espresso/60">{founder.role}</span>
+                  <span className="text-xs text-espresso/70">{founder.role}</span>
                 </p>
               ))}
             </div>

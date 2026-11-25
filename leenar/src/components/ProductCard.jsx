@@ -132,7 +132,7 @@ export default function ProductCard({ product, index = 0 }) {
               {name}
             </Link>
           </h3>
-          <div className="mt-1.5 flex items-center gap-2 text-xs text-espresso/65">
+          <div className="mt-1.5 flex items-center gap-2 text-xs text-espresso/70">
             <span className="flex -space-x-1" aria-hidden="true">
               {colours.map((colour) => (
                 <span

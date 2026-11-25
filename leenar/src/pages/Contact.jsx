@@ -8,6 +8,7 @@ import ContactForm from '../components/contact/ContactForm'
 import { WhatsAppIcon } from '../components/icons/SocialIcons'
 import { SOCIAL_ICONS } from '../components/icons/socialIconMap'
 import { CONTACT_SUBJECTS, SITE, SOCIAL_LINKS } from '../data/site'
+import usePageMeta from '../hooks/usePageMeta'
 
 const EASE = [0.22, 1, 0.36, 1]
 const fadeUp = (delay = 0) => ({
@@ -40,6 +41,10 @@ const ORDER_TYPES = [
 
 /** Contact page body; `initial` is the subject from the URL (?subject=custom). */
 function ContactContent({ initial }) {
+  usePageMeta(
+    'Contact Us',
+    'Get in touch with Leenar for questions, custom leather bags, corporate gifting and bulk orders. We respond to every message.',
+  )
   const [subject, setSubject] = useState(CONTACT_SUBJECTS.some(({ id }) => id === initial) ? initial : 'general')
 
   // Pick a subject from the custom / bulk cards, then take the visitor to the form

@@ -9,6 +9,7 @@ import AddressesTab from '../components/profile/AddressesTab'
 import useProfile from '../hooks/useProfile'
 import useWishlist from '../hooks/useWishlist'
 import { orders } from '../data/orders'
+import usePageMeta from '../hooks/usePageMeta'
 
 const TABS = [
   { id: 'profile', label: 'My Profile', icon: User, Panel: ProfileDetails },
@@ -22,6 +23,7 @@ const TABS = [
  * Sidebar on desktop, scrollable tabs on phones. The open tab is in the URL (?tab=orders).
  */
 export default function Profile() {
+  usePageMeta('My Account', 'Your Leenar profile, orders, wishlist and saved addresses.')
   const [params, setParams] = useSearchParams()
   const { profile, initial } = useProfile()
   const { count } = useWishlist()

@@ -7,8 +7,9 @@ import { Plus } from 'lucide-react'
  *
  * @param {{ title: string, content: React.ReactNode }[]} items
  * @param {number} defaultOpen  index open on load (-1 for none)
+ * @param {'h2'|'h3'|'h4'} headingAs  heading level for the titles, to keep the page outline in order
  */
-export default function Accordion({ items, defaultOpen = 0 }) {
+export default function Accordion({ items, defaultOpen = 0, headingAs: Heading = 'h3' }) {
   const [open, setOpen] = useState(defaultOpen)
   const baseId = useId()
 
@@ -20,7 +21,7 @@ export default function Accordion({ items, defaultOpen = 0 }) {
         const panelId = `${baseId}-panel-${index}`
         return (
           <div key={title}>
-            <h3>
+            <Heading>
               <button
                 id={buttonId}
                 type="button"
@@ -37,7 +38,7 @@ export default function Accordion({ items, defaultOpen = 0 }) {
                   aria-hidden="true"
                 />
               </button>
-            </h3>
+            </Heading>
             <AnimatePresence initial={false}>
               {isOpen && (
                 <motion.div

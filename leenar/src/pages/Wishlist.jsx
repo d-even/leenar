@@ -5,12 +5,14 @@ import SectionTitle from '../components/ui/SectionTitle'
 import Button from '../components/ui/Button'
 import ProductCard from '../components/ProductCard'
 import useWishlist from '../hooks/useWishlist'
+import usePageMeta from '../hooks/usePageMeta'
 
 /**
  * Wishlist page (/wishlist): every bag saved with the heart icon.
  * Tapping a heart again removes the bag; "Add to bag" works as on the shop.
  */
 export default function Wishlist() {
+  usePageMeta('My Wishlist', 'The Leenar bags you have saved for later.')
   const { items, count } = useWishlist()
 
   return (

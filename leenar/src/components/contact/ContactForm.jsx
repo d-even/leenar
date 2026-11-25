@@ -27,7 +27,7 @@ function Field({ id, label, optional, error, children }) {
   return (
     <div>
       <label htmlFor={id} className="mb-2 block text-xs font-medium tracking-[0.15em] uppercase">
-        {label} {optional && <span className="font-normal tracking-normal text-espresso/50 normal-case">(optional)</span>}
+        {label} {optional && <span className="font-normal tracking-normal text-espresso/70 normal-case">(optional)</span>}
       </label>
       {children}
       {error && (
@@ -138,7 +138,7 @@ export default function ContactForm({ subject, onSubjectChange }) {
             </select>
             <ChevronDown
               size={16}
-              className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-espresso/60"
+              className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-espresso/70"
               aria-hidden="true"
             />
           </div>
@@ -165,7 +165,7 @@ export default function ContactForm({ subject, onSubjectChange }) {
       </Field>
 
       <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-xs text-espresso/55">We respond to every message, usually within one working day.</p>
+        <p className="text-xs text-espresso/70">We respond to every message, usually within one working day.</p>
         <Button type="submit" size="lg" disabled={submitting} className="sm:min-w-52">
           {submitting ? (
             <>

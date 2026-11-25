@@ -69,7 +69,7 @@ export default function ProfileDetails() {
               <em>{profile.name}</em>
             )}
           </h2>
-          <p className="mt-1 text-sm text-espresso/65">
+          <p className="mt-1 text-sm text-espresso/70">
             {isEmpty
               ? 'Add your details to make ordering and enquiries quicker.'
               : 'Your details are saved in this browser.'}
@@ -133,7 +133,7 @@ export default function ProfileDetails() {
         <dl className="mt-8 grid gap-4 sm:grid-cols-3">
           {rows.map(({ icon: Icon, label, value }) => (
             <div key={label} className="rounded-2xl bg-malibu-light p-5">
-              <dt className="flex items-center gap-2 text-[0.7rem] tracking-[0.2em] text-espresso/55 uppercase">
+              <dt className="flex items-center gap-2 text-[0.7rem] tracking-[0.2em] text-espresso/70 uppercase">
                 <Icon size={14} className="text-ember" aria-hidden="true" /> {label}
               </dt>
               <dd className="mt-2 break-words">{value || <span className="text-espresso/40">Not added</span>}</dd>

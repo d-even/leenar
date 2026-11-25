@@ -34,7 +34,7 @@ export default function WishlistTab() {
           <h2 className="font-serif text-3xl">
             My <em className="text-ember">Wishlist</em>
           </h2>
-          <p className="mt-1 text-sm text-espresso/65">
+          <p className="mt-1 text-sm text-espresso/70">
             {items.length} saved {items.length === 1 ? 'piece' : 'pieces'}
           </p>
         </div>
@@ -75,7 +75,7 @@ export default function WishlistTab() {
                     <Link to={`/product/${product.id}`} className="font-serif text-xl italic hover:text-ember">
                       {product.name}
                     </Link>
-                    <p className="text-xs text-espresso/60">
+                    <p className="text-xs text-espresso/70">
                       {product.category} · {product.colours[0].name}
                     </p>
                     <p className="mt-1 font-medium text-ember">{formatPrice(product.price)}</p>
@@ -88,7 +88,7 @@ export default function WishlistTab() {
                   <button
                     type="button"
                     onClick={() => removeFromWishlist(product.id)}
-                    className="flex size-10 shrink-0 items-center justify-center rounded-full border border-espresso/15 text-espresso/60 transition-colors hover:border-ember hover:text-ember"
+                    className="flex size-10 shrink-0 items-center justify-center rounded-full border border-espresso/15 text-espresso/70 transition-colors hover:border-ember hover:text-ember"
                     aria-label={`Remove ${product.name} from wishlist`}
                   >
                     <Trash2 size={16} />

@@ -42,15 +42,18 @@ export default function ProcessSteps() {
                 {/* Text */}
                 <div className="flex flex-col p-7 sm:p-10 lg:p-12">
                   <div className="flex items-baseline justify-between gap-4">
-                    <span className="font-serif text-6xl leading-none text-gold/35 italic sm:text-7xl" aria-hidden="true">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
+                    {/* Decorative step number, drawn with CSS so it isn't read as page text */}
+                    <span
+                      data-number={String(index + 1).padStart(2, '0')}
+                      className="font-serif text-6xl leading-none text-gold/35 italic before:content-[attr(data-number)] sm:text-7xl"
+                      aria-hidden="true"
+                    />
                     <span className="rounded-full bg-malibu px-3 py-1 text-[0.65rem] font-medium tracking-[0.15em] text-ember uppercase">
                       {step.detail}
                     </span>
                   </div>
                   <div className="mt-8 lg:mt-auto">
-                    <p className="text-xs tracking-[0.2em] text-espresso/50 uppercase">
+                    <p className="text-xs tracking-[0.2em] text-espresso/70 uppercase">
                       Step {index + 1} of {PROCESS_STEPS.length}
                     </p>
                     <h3 className="mt-2 font-serif text-2xl leading-tight sm:text-3xl">

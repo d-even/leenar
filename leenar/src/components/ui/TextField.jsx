@@ -30,14 +30,14 @@ export default function TextField({ id, label, error, optional = false, as = 'in
     <div className={className}>
       <label htmlFor={id} className="mb-2 block text-xs font-medium tracking-[0.15em] uppercase">
         {label}{' '}
-        {optional && <span className="font-normal tracking-normal text-espresso/50 normal-case">(optional)</span>}
+        {optional && <span className="font-normal tracking-normal text-espresso/70 normal-case">(optional)</span>}
       </label>
       {as === 'select' ? (
         <div className="relative">
           {field}
           <ChevronDown
             size={16}
-            className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-espresso/60"
+            className="pointer-events-none absolute top-1/2 right-4 -translate-y-1/2 text-espresso/70"
             aria-hidden="true"
           />
         </div>

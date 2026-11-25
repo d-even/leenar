@@ -17,6 +17,7 @@ import { getProductById, products } from '../data/products'
 import { getCollectionBySlug } from '../data/collections'
 import { SHIPPING_RETURNS } from '../data/site'
 import { formatPrice } from '../utils/format'
+import usePageMeta from '../hooks/usePageMeta'
 
 const EASE = [0.22, 1, 0.36, 1]
 
@@ -41,6 +42,7 @@ function getRelated(product) {
 
 /** Shown when the URL doesn't match any product. */
 function ProductNotFound() {
+  usePageMeta('Product Not Found')
   return (
     <Container as="section" className="flex min-h-[70vh] flex-col items-center justify-center py-24 text-center">
       <p className="font-serif text-7xl text-ember/20 italic" aria-hidden="true">
@@ -64,6 +66,10 @@ function ProductNotFound() {
 
 /** The product page itself. Keyed by product id so state resets between products. */
 function ProductView({ product }) {
+  usePageMeta(
+    `${product.name}, ${product.category}`,
+    `${product.name} by Leenar: ${product.description.split('. ')[0]}. Handcrafted in 100% real leather, ${formatPrice(product.price)}.`,
+  )
   const { addItem, openCart, maxQuantity } = useCart()
   const { isWishlisted, toggleWishlist } = useWishlist()
   const { showToast } = useToast()
@@ -146,7 +152,7 @@ function ProductView({ product }) {
         <table className="w-full text-left">
           <caption className="sr-only">Sizes and dimensions</caption>
           <thead>
-            <tr className="text-xs tracking-[0.15em] text-espresso/55 uppercase">
+            <tr className="text-xs tracking-[0.15em] text-espresso/70 uppercase">
               <th scope="col" className="pb-2 font-medium">Size</th>
               <th scope="col" className="pb-2 font-medium">W × H × D</th>
             </tr>
@@ -178,7 +184,7 @@ function ProductView({ product }) {
     <>
       <Container size="wide" className="pt-8 pb-20 lg:pt-12">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-8 text-xs tracking-wide text-espresso/60">
+        <nav aria-label="Breadcrumb" className="mb-8 text-xs tracking-wide text-espresso/70">
           <ol className="flex flex-wrap items-center gap-1.5">
             <li><Link to="/" className="hover:text-ember">Home</Link></li>
             <li aria-hidden="true"><ChevronRight size={12} /></li>
@@ -212,7 +218,7 @@ function ProductView({ product }) {
                   <span className="text-gold" aria-hidden="true">·</span>
                   <Link
                     to={`/collection/${collection.slug}`}
-                    className="text-xs tracking-[0.25em] text-espresso/60 uppercase hover:text-ember"
+                    className="text-xs tracking-[0.25em] text-espresso/70 uppercase hover:text-ember"
                   >
                     {collection.name}
                   </Link>
@@ -251,7 +257,7 @@ function ProductView({ product }) {
             </div>
 
             <p className="mt-6 font-serif text-3xl text-ember">{formatPrice(product.price)}</p>
-            <p className="mt-1 text-xs text-espresso/55">Inclusive of all taxes · Free shipping across India</p>
+            <p className="mt-1 text-xs text-espresso/70">Inclusive of all taxes · Free shipping across India</p>
 
             <div className="mt-6 h-px w-14 bg-gold" aria-hidden="true" />
             <p className="mt-6 max-w-xl leading-relaxed text-espresso/80">{product.description}</p>
@@ -298,7 +304,7 @@ function ProductView({ product }) {
                     }`}
                   >
                     <span className="block text-sm font-medium">{option.name}</span>
-                    <span className={`block text-xs ${index === sizeIndex ? 'text-malibu/75' : 'text-espresso/55'}`}>
+                    <span className={`block text-xs ${index === sizeIndex ? 'text-malibu/75' : 'text-espresso/70'}`}>
                       {option.dimensions}
                     </span>
                   </button>
@@ -333,7 +339,7 @@ function ProductView({ product }) {
             </ul>
 
             <div className="mt-10">
-              <Accordion items={accordion} defaultOpen={-1} />
+              <Accordion items={accordion} defaultOpen={-1} headingAs="h2" />
             </div>
           </motion.div>
         </div>

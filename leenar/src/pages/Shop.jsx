@@ -2,9 +2,11 @@ import Container from '../components/ui/Container'
 import SectionTitle from '../components/ui/SectionTitle'
 import ShopBrowser from '../components/shop/ShopBrowser'
 import { products } from '../data/products'
+import usePageMeta from '../hooks/usePageMeta'
 
 /** Shop page (/shop): every product with filters and sorting. */
 export default function Shop() {
+  usePageMeta('Shop All Bags', 'Shop handcrafted women\'s leather handbags: totes, top-handle bags, clutches, crossbody bags and wallets in 100% real leather. Free shipping across India.')
   return (
     <>
       <header className="border-b border-gold/25 bg-malibu">

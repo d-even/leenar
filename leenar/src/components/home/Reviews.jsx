@@ -30,7 +30,7 @@ function ReviewCard({ review, index }) {
       <figcaption className="mt-5 flex items-end justify-between gap-4">
         <div>
           <p className="font-medium">{review.name}</p>
-          <p className="text-sm text-espresso/60">{review.city}</p>
+          <p className="text-sm text-espresso/70">{review.city}</p>
         </div>
         {product && (
           <Link

@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import Navbar from './Navbar'
 import { TRANSPARENT_NAV_ROUTES } from './navConfig'
 import CartDrawer from './CartDrawer'
@@ -42,7 +43,15 @@ export default function Layout() {
 
       <main id="main" tabIndex={-1} className={`flex-1 focus:outline-none ${underNav ? '' : 'pt-16 lg:pt-20'}`}>
         <Suspense fallback={<PageLoader />}>
-          <Outlet />
+          {/* Soft fade between pages. Opacity only: a transform here would break fixed drawers inside pages */}
+          <motion.div
+            key={pathname}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.45, ease: 'easeOut' }}
+          >
+            <Outlet />
+          </motion.div>
         </Suspense>
       </main>
 

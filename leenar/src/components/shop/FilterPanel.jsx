@@ -56,7 +56,7 @@ export default function FilterPanel({ filters, onChange, categories, colours, co
                   <span className={`flex-1 ${checked ? 'font-medium' : 'text-espresso/80 group-hover:text-ember'}`}>
                     {category}
                   </span>
-                  <span className="text-xs text-espresso/45">{counts[category] ?? 0}</span>
+                  <span className="text-xs text-espresso/70">{counts[category] ?? 0}</span>
                 </label>
               </li>
             )

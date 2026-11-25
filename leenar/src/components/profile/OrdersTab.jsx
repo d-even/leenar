@@ -28,7 +28,7 @@ function Tracker({ status }) {
             >
               {index <= reached && <Check size={13} strokeWidth={2.5} aria-hidden="true" />}
             </span>
-            <span className={`text-[0.65rem] tracking-wide ${index <= reached ? 'text-espresso' : 'text-espresso/45'}`}>
+            <span className={`text-[0.65rem] tracking-wide ${index <= reached ? 'text-espresso' : 'text-espresso/70'}`}>
               {step}
             </span>
           </span>
@@ -51,7 +51,7 @@ export default function OrdersTab() {
       <h2 className="font-serif text-3xl">
         My <em className="text-ember">Orders</em>
       </h2>
-      <p className="mt-1 text-sm text-espresso/65">{orders.length} orders · sample history for this demo</p>
+      <p className="mt-1 text-sm text-espresso/70">{orders.length} orders · sample history for this demo</p>
 
       <ul className="mt-8 space-y-5">
         {orders.map((order) => {
@@ -65,15 +65,15 @@ export default function OrdersTab() {
               <div className="flex flex-wrap items-center justify-between gap-3 border-b border-espresso/10 bg-malibu-light px-5 py-4 sm:px-6">
                 <div className="flex flex-wrap gap-x-8 gap-y-1 text-sm">
                   <p>
-                    <span className="block text-[0.65rem] tracking-[0.2em] text-espresso/50 uppercase">Order</span>
+                    <span className="block text-[0.65rem] tracking-[0.2em] text-espresso/70 uppercase">Order</span>
                     <span className="font-medium">{order.id}</span>
                   </p>
                   <p>
-                    <span className="block text-[0.65rem] tracking-[0.2em] text-espresso/50 uppercase">Placed</span>
+                    <span className="block text-[0.65rem] tracking-[0.2em] text-espresso/70 uppercase">Placed</span>
                     {formatDate(order.date)}
                   </p>
                   <p>
-                    <span className="block text-[0.65rem] tracking-[0.2em] text-espresso/50 uppercase">Total</span>
+                    <span className="block text-[0.65rem] tracking-[0.2em] text-espresso/70 uppercase">Total</span>
                     <span className="text-ember">{formatPrice(total)}</span>
                   </p>
                 </div>
@@ -101,7 +101,7 @@ export default function OrdersTab() {
                           <Link to={`/product/${product.id}`} className="font-serif text-lg italic hover:text-ember">
                             {product.name}
                           </Link>
-                          <p className="text-xs text-espresso/60">
+                          <p className="text-xs text-espresso/70">
                             {colour} · {size} · Qty {quantity}
                           </p>
                         </div>

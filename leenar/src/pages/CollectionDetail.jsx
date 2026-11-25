@@ -8,10 +8,12 @@ import ShopBrowser from '../components/shop/ShopBrowser'
 import CollectionCard from '../components/collection/CollectionCard'
 import { collections, getCollectionBySlug } from '../data/collections'
 import { getProductsByCollection } from '../data/products'
+import usePageMeta from '../hooks/usePageMeta'
 
 const EASE = [0.22, 1, 0.36, 1]
 
 function CollectionNotFound() {
+  usePageMeta('Collection Not Found')
   return (
     <Container as="section" className="flex min-h-[70vh] flex-col items-center justify-center py-24 text-center">
       <h1 className="font-serif text-3xl italic sm:text-4xl">Collection not found</h1>
@@ -34,6 +36,12 @@ export default function CollectionDetail() {
   const { slug } = useParams()
   const collection = getCollectionBySlug(slug)
   if (!collection) return <CollectionNotFound />
+  return <CollectionView collection={collection} slug={slug} />
+}
+
+/** The collection page itself (kept separate so hooks never run conditionally). */
+function CollectionView({ collection, slug }) {
+  usePageMeta(`${collection.name} Collection`, `${collection.name} by Leenar: ${collection.line} Handcrafted leather bags, free shipping across India.`)
 
   const items = getProductsByCollection(slug)
   const position = collections.indexOf(collection)

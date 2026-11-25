@@ -2,12 +2,14 @@ import Container from '../components/ui/Container'
 import SectionTitle from '../components/ui/SectionTitle'
 import CollectionCard from '../components/collection/CollectionCard'
 import { collections } from '../data/collections'
+import usePageMeta from '../hooks/usePageMeta'
 
 /**
  * Collections page (/collection): every collection as a large banner card.
  * The first one is full width; the rest sit in pairs.
  */
 export default function Collections() {
+  usePageMeta('Collections', 'Explore Leenar collections: Everyday Essentials, Evening Elegance, Work & Travel, Mini Treasures and Limited Edition leather bags.')
   const [featured, ...rest] = collections
 
   return (

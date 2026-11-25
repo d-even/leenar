@@ -46,7 +46,7 @@ function CartLine({ line, onNavigate }) {
             >
               {name}
             </Link>
-            {details && <p className="mt-0.5 text-xs tracking-wide text-espresso/60">{details}</p>}
+            {details && <p className="mt-0.5 text-xs tracking-wide text-espresso/70">{details}</p>}
           </div>
           <p className="shrink-0 text-sm font-medium text-ember">{formatPrice(price * quantity)}</p>
         </div>
@@ -80,7 +80,7 @@ function CartLine({ line, onNavigate }) {
           <button
             type="button"
             onClick={() => removeItem(key)}
-            className="inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-xs text-espresso/60 transition-colors hover:text-ember"
+            className="inline-flex items-center gap-1.5 rounded-full px-2 py-1 text-xs text-espresso/70 transition-colors hover:text-ember"
             aria-label={`Remove ${name} from bag`}
           >
             <Trash2 size={14} /> Remove
@@ -154,7 +154,7 @@ export default function CartDrawer() {
               <h2 id="cart-title" className="font-serif text-2xl italic">
                 Your Bag
                 {itemCount > 0 && (
-                  <span className="ml-2 font-sans text-sm not-italic text-espresso/60">
+                  <span className="ml-2 font-sans text-sm not-italic text-espresso/70">
                     ({itemCount} {itemCount === 1 ? 'item' : 'items'})
                   </span>
                 )}
