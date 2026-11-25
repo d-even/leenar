@@ -9,6 +9,7 @@ export const SITE = {
   phone: '+91 00000 00000', // placeholder
   whatsapp: '910000000000', // placeholder: country code + number, digits only
   address: 'Studio address, City, State, India', // placeholder
+  hours: 'Monday – Saturday, 10am – 7pm IST',
 }
 
 /** Social profile links (placeholders until the real handles are added). */
@@ -36,4 +37,11 @@ export const SHIPPING_RETURNS = [
   'Free shipping across India on every order. Dispatched within 2–3 working days; delivery usually takes 4–7 working days.',
   'Easy 7-day returns on unused bags in their original packaging. Personalised and custom orders cannot be returned.',
   'Every bag arrives in a Leenar dust bag and gift-ready box.',
+]
+
+/** Subjects offered on the contact form. `id` is used in links like /contact?subject=custom */
+export const CONTACT_SUBJECTS = [
+  { id: 'general', label: 'General' },
+  { id: 'custom', label: 'Custom Order' },
+  { id: 'bulk', label: 'Bulk or Business Enquiry' },
 ]

@@ -27,7 +27,7 @@ const COLUMNS = [
     links: [
       { label: 'Our Story', to: '/about' },
       { label: 'Contact Us', to: '/contact' },
-      { label: 'Custom & Bulk Orders', to: '/contact' },
+      { label: 'Custom & Bulk Orders', to: '/contact?subject=custom' },
       { label: 'My Account', to: '/profile' },
     ],
   },
