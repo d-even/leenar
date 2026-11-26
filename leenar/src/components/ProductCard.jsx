@@ -11,7 +11,6 @@ import { formatPrice } from '../utils/format'
  *
  * - The whole card links to /product/:id (a "stretched" link on the name,
  *   so the heart and quick-add buttons stay separate, valid controls).
- * - Hovering swaps to the second photo when there is one.
  * - Quick add puts the default colour and first size in the bag.
  *
  * @param {object} product  an item from data/products.js
@@ -24,7 +23,7 @@ export default function ProductCard({ product, index = 0 }) {
 
   const { id, name, price, colours, sizes, images, isBestseller, isNew } = product
   const defaultColour = colours[0]
-  const [primaryImage, hoverImage] = images
+  const [primaryImage] = images
   const saved = isWishlisted(id)
 
   const handleQuickAdd = () => {
@@ -52,33 +51,22 @@ export default function ProductCard({ product, index = 0 }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.7, delay: (index % 4) * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative flex flex-col"
+      className="relative flex flex-col"
     >
       {/* Image */}
-      <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-malibu shadow-soft transition-shadow duration-500 group-hover:shadow-lift">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-malibu shadow-soft">
         {primaryImage ? (
           <img
             src={primaryImage}
             alt={`${name} in ${defaultColour.name}`}
             loading="lazy"
             decoding="async"
-            className={`absolute inset-0 size-full object-cover transition-all duration-700 ease-(--ease-luxe) group-hover:scale-105 ${
-              hoverImage ? 'group-hover:opacity-0' : ''
-            }`}
+            className="absolute inset-0 size-full object-cover"
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center font-serif text-2xl text-ember/40 italic">
             Leenar
           </div>
-        )}
-        {hoverImage && (
-          <img
-            src={hoverImage}
-            alt=""
-            loading="lazy"
-            decoding="async"
-            className="absolute inset-0 size-full scale-105 object-cover opacity-0 transition-all duration-700 ease-(--ease-luxe) group-hover:scale-100 group-hover:opacity-100"
-          />
         )}
 
         {/* Badges */}
@@ -101,19 +89,19 @@ export default function ProductCard({ product, index = 0 }) {
           onClick={handleWishlist}
           aria-pressed={saved}
           aria-label={saved ? `Remove ${name} from wishlist` : `Save ${name} to wishlist`}
-          className="absolute top-3 right-3 z-10 flex size-10 items-center justify-center rounded-full bg-malibu-light/90 text-espresso shadow-soft backdrop-blur-sm transition-all hover:scale-110 hover:text-ember"
+          className="absolute top-3 right-3 z-10 flex size-10 items-center justify-center rounded-full bg-malibu-light/90 text-espresso shadow-soft backdrop-blur-sm"
         >
           <motion.span key={String(saved)} initial={{ scale: 0.6 }} animate={{ scale: 1 }} className="flex">
             <Heart size={18} strokeWidth={1.75} className={saved ? 'fill-ember text-ember' : ''} />
           </motion.span>
         </button>
 
-        {/* Quick add: round icon on touch screens, a full bar that slides up on hover for desktop */}
+        {/* Quick add: round icon on touch screens, a full bar on desktop */}
         <button
           type="button"
           onClick={handleQuickAdd}
           aria-label={`Add ${name} to bag`}
-          className="absolute right-3 bottom-3 z-10 flex size-11 items-center justify-center gap-2 rounded-full bg-espresso text-malibu-light shadow-lift transition-all duration-500 ease-(--ease-luxe) hover:bg-ember lg:left-3 lg:size-auto lg:h-11 lg:translate-y-4 lg:opacity-0 lg:group-focus-within:translate-y-0 lg:group-focus-within:opacity-100 lg:group-hover:translate-y-0 lg:group-hover:opacity-100"
+          className="absolute right-3 bottom-3 z-10 flex size-11 items-center justify-center gap-2 rounded-full bg-espresso text-malibu-light shadow-lift lg:left-3 lg:size-auto lg:h-11"
         >
           <ShoppingBag size={17} strokeWidth={1.75} />
           <span className="hidden text-xs font-medium tracking-[0.15em] uppercase lg:inline">Add to bag</span>
@@ -127,7 +115,7 @@ export default function ProductCard({ product, index = 0 }) {
             {/* Stretched link: its ::after covers the whole card */}
             <Link
               to={`/product/${id}`}
-              className="transition-colors after:absolute after:inset-0 after:rounded-xl hover:text-ember"
+              className="after:absolute after:inset-0 after:rounded-xl"
             >
               {name}
             </Link>

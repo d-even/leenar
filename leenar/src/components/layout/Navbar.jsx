@@ -121,15 +121,15 @@ function MobileMenu({ open, onClose }) {
           className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-espresso text-malibu-light lg:hidden"
         >
           <Container size="wide" className={`flex shrink-0 items-center justify-between ${NAV_HEIGHT}`}>
+            <Logo />
             <button
               type="button"
               onClick={onClose}
-              className="-ml-2 rounded-full p-2 transition-colors hover:text-gold"
+              className="-mr-2 rounded-full p-2 transition-colors hover:text-gold"
               aria-label="Close menu"
             >
               <X size={26} strokeWidth={1.5} />
             </button>
-            <Logo />
           </Container>
 
           <Container size="wide" as="nav" aria-label="Mobile" className="flex flex-1 flex-col justify-center py-10">
@@ -230,56 +230,55 @@ export default function Navbar() {
         }`}
       >
         <Container size="wide" className={`flex items-center justify-between gap-4 ${NAV_HEIGHT}`}>
-          {/* Left: hamburger (mobile) / links (desktop) */}
-          <button
-            type="button"
-            onClick={() => setMenuOpen(true)}
-            className="-ml-2 rounded-full p-2 text-malibu-light transition-colors hover:text-gold lg:hidden"
-            aria-label="Open menu"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-          >
-            <Menu size={24} strokeWidth={1.5} />
-          </button>
+          {/* Left: logo */}
+          <Logo />
 
-          <nav aria-label="Main" className="hidden lg:block">
-            <ul className="flex items-center gap-9">
-              {NAV_LINKS.map(({ label, to }) => (
-                <li key={to}>
-                  <NavLink
-                    to={to}
-                    end={to === '/'}
-                    className={({ isActive }) =>
-                      `group relative py-2 text-[0.78rem] font-medium tracking-[0.2em] uppercase transition-colors ${
-                        isActive ? 'text-malibu-light' : 'text-malibu/80 hover:text-malibu-light'
-                      }`
-                    }
-                  >
-                    {({ isActive }) => (
-                      <>
-                        {label}
-                        {/* Gold underline: full width when active, grows in on hover */}
-                        <span
-                          className={`absolute inset-x-0 -bottom-0.5 h-px origin-left bg-gold transition-transform duration-300 ${
-                            isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                          }`}
-                          aria-hidden="true"
-                        />
-                      </>
-                    )}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* Right: account, wishlist, bag, then the logo in the far right corner */}
+          {/* Right: links (desktop), then account, wishlist, bag and the menu button (mobile) */}
           <div className="flex items-center gap-0.5 sm:gap-2">
+            <nav aria-label="Main" className="hidden lg:block">
+              <ul className="flex items-center gap-9">
+                {NAV_LINKS.map(({ label, to }) => (
+                  <li key={to}>
+                    <NavLink
+                      to={to}
+                      end={to === '/'}
+                      className={({ isActive }) =>
+                        `group relative py-2 text-[0.78rem] font-medium tracking-[0.2em] uppercase transition-colors ${
+                          isActive ? 'text-malibu-light' : 'text-malibu/80 hover:text-malibu-light'
+                        }`
+                      }
+                    >
+                      {({ isActive }) => (
+                        <>
+                          {label}
+                          {/* Gold underline: full width when active, grows in on hover */}
+                          <span
+                            className={`absolute inset-x-0 -bottom-0.5 h-px origin-left bg-gold transition-transform duration-300 ${
+                              isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                            }`}
+                            aria-hidden="true"
+                          />
+                        </>
+                      )}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <span className="mx-6 hidden h-6 w-px bg-malibu/25 lg:block" aria-hidden="true" />
             <ProfileLink />
             <WishlistLink />
             <CartButton />
-            <span className="mx-2 hidden h-6 w-px bg-malibu/25 sm:block lg:mx-4" aria-hidden="true" />
-            <Logo className="ml-2 sm:ml-0" />
+            <button
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              className="-mr-2 ml-1 rounded-full p-2 text-malibu-light transition-colors hover:text-gold lg:hidden"
+              aria-label="Open menu"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+            >
+              <Menu size={24} strokeWidth={1.5} />
+            </button>
           </div>
         </Container>
       </header>
